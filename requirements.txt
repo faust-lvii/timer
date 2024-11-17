@@ -1,0 +1,2 @@
+ttkbootstrap>=1.10.1
+plyer>=2.1.0
