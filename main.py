@@ -11,16 +11,16 @@ import os
 import time
 
 def main():
-    # Tema ve renk ayarları
+    # Tema ayarları
     ctk.set_appearance_mode("dark")
-    ctk.set_default_color_theme("blue")
+    ctk.set_default_color_theme("dark-blue")
 
     root = ctk.CTk()
     root.title("Modern Reminder")
     root.geometry("800x900")
     
     # Gradient arka plan için frame
-    main_container = ctk.CTkFrame(root, fg_color="#1a1a1a")
+    main_container = ctk.CTkFrame(root, fg_color="#0a0a0a")
     main_container.pack(fill="both", expand=True)
 
     # Başlık
@@ -31,7 +31,7 @@ def main():
         title_frame,
         text="Modern Reminder",
         font=ctk.CTkFont(family="Helvetica", size=32, weight="bold"),
-        text_color="#4CAF50"
+        text_color="#ffffff"
     )
     title_label.pack()
 
@@ -42,7 +42,7 @@ def main():
     # Hatırlatıcı bölümü
     reminder_frame = ctk.CTkFrame(
         main_container,
-        fg_color="#2d2d2d",
+        fg_color="#1a1a1a",
         corner_radius=15
     )
     reminder_frame.pack(padx=40, pady=20, fill="x")
@@ -51,7 +51,7 @@ def main():
         reminder_frame,
         text="Yeni Hatırlatıcı Ekle",
         font=ctk.CTkFont(size=20, weight="bold"),
-        text_color="#4CAF50"
+        text_color="#ffffff"
     )
     reminder_title.pack(pady=(20, 10))
 
@@ -79,7 +79,10 @@ def main():
         corner_radius=10,
         border_width=2,
         justify="center",
-        font=ctk.CTkFont(size=16)
+        font=ctk.CTkFont(size=16),
+        fg_color="#2d2d2d",
+        text_color="#ffffff",
+        border_color="#888888"
     )
     hours_entry.pack()
 
@@ -156,8 +159,8 @@ def main():
         height=40,
         corner_radius=10,
         font=ctk.CTkFont(size=15, weight="bold"),
-        fg_color="#4CAF50",
-        hover_color="#45a049"
+        fg_color="#333333",
+        hover_color="#404040"
     )
     add_button.pack(pady=20)
 
@@ -166,7 +169,7 @@ def main():
     # Aktif hatırlatıcılar bölümü
     reminders_container = ctk.CTkFrame(
         main_container,
-        fg_color="#2d2d2d",
+        fg_color="#1a1a1a",
         corner_radius=15
     )
     reminders_container.pack(padx=40, pady=20, fill="x")
@@ -194,22 +197,28 @@ def main():
             
         # Hatırlatıcıları listele
         for index, reminder in enumerate(reminder_manager.get_reminders()):
-            reminder_frame = ctk.CTkFrame(reminders_scroll, fg_color="#363636")
+            reminder_frame = ctk.CTkFrame(
+                reminders_scroll,
+                fg_color="#2d2d2d",
+                corner_radius=10
+            )
             reminder_frame.pack(fill="x", padx=5, pady=5)
             
             time_label = ctk.CTkLabel(
                 reminder_frame,
                 text=f"⏰ {reminder['time']}",
-                font=ctk.CTkFont(size=14, weight="bold")
+                font=ctk.CTkFont(size=14, weight="bold"),
+                text_color="#ffffff"
             )
-            time_label.pack(side="left", padx=10, pady=5)
+            time_label.pack(side="left", padx=15, pady=10)
             
             message_label = ctk.CTkLabel(
                 reminder_frame,
                 text=reminder['message'],
-                font=ctk.CTkFont(size=12)
+                font=ctk.CTkFont(size=13, weight="bold"),
+                text_color="#888888"
             )
-            message_label.pack(side="left", padx=10, pady=5)
+            message_label.pack(side="left", padx=10, pady=10)
             
             # Kaldır butonu
             def delete_reminder(idx=index):
@@ -219,11 +228,12 @@ def main():
             
             delete_button = ctk.CTkButton(
                 reminder_frame,
-                text="❌",  # Çarpı işareti
+                text="❌",
                 width=30,
                 height=30,
-                fg_color="#FF4444",  # Kırmızı arka plan
-                hover_color="#FF0000",  # Hover rengi
+                corner_radius=15,
+                fg_color="#444444",
+                hover_color="#666666",
                 command=delete_reminder
             )
             delete_button.pack(side="right", padx=10, pady=5)

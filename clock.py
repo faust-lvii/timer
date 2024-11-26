@@ -5,22 +5,36 @@ import math
 
 class ModernClock(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
+        super().__init__(master, fg_color="transparent", **kwargs)
+        
+        # Renk paleti
+        self.COLORS = {
+            'bg': "#1a1a1a",
+            'text_bright': "#ffffff",
+            'text_dim': "#888888"
+        }
         
         # Saat container'ı
-        self.clock_container = ctk.CTkFrame(self, fg_color="transparent")
-        self.clock_container.pack(pady=20)
+        self.clock_container = ctk.CTkFrame(
+            self,
+            fg_color=self.COLORS['bg'],
+            corner_radius=20
+        )
+        self.clock_container.pack(pady=20, padx=20)
         
         # Dijital saat gösterimi
-        self.time_frame = ctk.CTkFrame(self.clock_container, fg_color="#2B2B2B")
-        self.time_frame.pack(pady=10)
+        self.time_frame = ctk.CTkFrame(
+            self.clock_container,
+            fg_color="transparent"
+        )
+        self.time_frame.pack(pady=20, padx=30)
         
         # Saat
         self.hours_label = ctk.CTkLabel(
             self.time_frame,
             text="00",
-            font=ctk.CTkFont(size=60, weight="bold"),
-            text_color="#4CAF50"
+            font=ctk.CTkFont(size=80, weight="bold"),
+            text_color=self.COLORS['text_bright']
         )
         self.hours_label.pack(side="left", padx=10)
         
@@ -28,8 +42,8 @@ class ModernClock(ctk.CTkFrame):
         self.colon = ctk.CTkLabel(
             self.time_frame,
             text=":",
-            font=ctk.CTkFont(size=60, weight="bold"),
-            text_color="#FFFFFF"
+            font=ctk.CTkFont(size=80, weight="bold"),
+            text_color=self.COLORS['text_dim']
         )
         self.colon.pack(side="left")
         
@@ -37,8 +51,8 @@ class ModernClock(ctk.CTkFrame):
         self.minutes_label = ctk.CTkLabel(
             self.time_frame,
             text="00",
-            font=ctk.CTkFont(size=60, weight="bold"),
-            text_color="#4CAF50"
+            font=ctk.CTkFont(size=80, weight="bold"),
+            text_color=self.COLORS['text_bright']
         )
         self.minutes_label.pack(side="left", padx=10)
         
@@ -46,23 +60,27 @@ class ModernClock(ctk.CTkFrame):
         self.date_label = ctk.CTkLabel(
             self.clock_container,
             text="",
-            font=ctk.CTkFont(size=14),
-            text_color="#888888"
+            font=ctk.CTkFont(size=16),
+            text_color=self.COLORS['text_dim']
         )
-        self.date_label.pack(pady=5)
+        self.date_label.pack(pady=(0, 20))
         
         self.update_clock()
     
     def update_clock(self):
         current_time = datetime.now()
         
-        # Saat ve dakika güncelleme
         self.hours_label.configure(text=f"{current_time.hour:02d}")
         self.minutes_label.configure(text=f"{current_time.minute:02d}")
         
-        # Tarih güncelleme
         date_str = current_time.strftime("%d %B %Y, %A")
         self.date_label.configure(text=date_str)
         
-        # Her saniyede bir güncelle
+        # İki nokta animasyonu
+        self.colon.configure(
+            text_color=self.COLORS['text_bright'] 
+            if current_time.second % 2 == 0 
+            else self.COLORS['text_dim']
+        )
+        
         self.after(1000, self.update_clock)
