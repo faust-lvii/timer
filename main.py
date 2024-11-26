@@ -17,7 +17,8 @@ def main():
 
     root = ctk.CTk()
     root.title("Modern Reminder")
-    root.geometry("800x900")
+    root.geometry("700x900")
+    root.minsize(400, 600)
     
     # Gradient arka plan için frame
     main_container = ctk.CTkFrame(root, fg_color="#0a0a0a")
@@ -25,7 +26,7 @@ def main():
 
     # Başlık
     title_frame = ctk.CTkFrame(main_container, fg_color="transparent")
-    title_frame.pack(pady=20)
+    title_frame.pack(pady=20, fill="x")
     
     title_label = ctk.CTkLabel(
         title_frame,
@@ -37,7 +38,7 @@ def main():
 
     # Modern saat widget'ı
     clock = ModernClock(main_container)
-    clock.pack(pady=30)
+    clock.pack(pady=30, fill="x")
 
     # Hatırlatıcı bölümü
     reminder_frame = ctk.CTkFrame(
@@ -57,11 +58,11 @@ def main():
 
     # Zaman girişi frame'i
     time_input_frame = ctk.CTkFrame(reminder_frame, fg_color="transparent")
-    time_input_frame.pack(pady=10)
+    time_input_frame.pack(pady=5)
 
     # Saat girişi
     hours_frame = ctk.CTkFrame(time_input_frame, fg_color="transparent")
-    hours_frame.pack(side="left", padx=10)
+    hours_frame.pack(side="left", padx=5)
     
     hours_label = ctk.CTkLabel(
         hours_frame,
@@ -74,8 +75,8 @@ def main():
     hours_entry = ctk.CTkEntry(
         hours_frame,
         placeholder_text="00-23",
-        width=80,
-        height=40,
+        width=60,
+        height=30,
         corner_radius=10,
         border_width=2,
         justify="center",
@@ -97,7 +98,7 @@ def main():
 
     # Dakika girişi
     minutes_frame = ctk.CTkFrame(time_input_frame, fg_color="transparent")
-    minutes_frame.pack(side="left", padx=10)
+    minutes_frame.pack(side="left", padx=5)
     
     minutes_label = ctk.CTkLabel(
         minutes_frame,
@@ -110,8 +111,8 @@ def main():
     minutes_entry = ctk.CTkEntry(
         minutes_frame,
         placeholder_text="00-59",
-        width=80,
-        height=40,
+        width=60,
+        height=30,
         corner_radius=10,
         border_width=2,
         justify="center",
@@ -121,7 +122,7 @@ def main():
 
     # Mesaj girişi
     message_frame = ctk.CTkFrame(reminder_frame, fg_color="transparent")
-    message_frame.pack(pady=20)
+    message_frame.pack(pady=10)
     
     message_label = ctk.CTkLabel(
         message_frame,
@@ -155,14 +156,14 @@ def main():
         reminder_frame,
         text="Hatırlatıcı Ekle",
         command=lambda: on_add_reminder(),
-        width=200,
-        height=40,
+        width=150,
+        height=35,
         corner_radius=10,
         font=ctk.CTkFont(size=15, weight="bold"),
         fg_color="#333333",
         hover_color="#404040"
     )
-    add_button.pack(pady=20)
+    add_button.pack(pady=10)
 
     reminder_manager = ReminderManager()
 
@@ -172,13 +173,13 @@ def main():
         fg_color="#1a1a1a",
         corner_radius=15
     )
-    reminders_container.pack(padx=40, pady=20, fill="x")
+    reminders_container.pack(padx=40, pady=20, fill="both", expand=True)
 
     reminders_label = ctk.CTkLabel(
         reminders_container,
         text="Aktif Hatırlatıcılar",
         font=ctk.CTkFont(size=18, weight="bold"),
-        text_color="#4CAF50"
+        text_color="#ffffff"
     )
     reminders_label.pack(pady=10)
 
