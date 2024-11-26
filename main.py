@@ -16,30 +16,44 @@ def main():
     ctk.set_default_color_theme("blue")
 
     root = ctk.CTk()
-    root.title("Modern Reminder Clock")
-    root.geometry("500x800")
-
-    # Ana container frame
-    main_frame = ctk.CTkFrame(root)
-    main_frame.pack(padx=20, pady=20, fill="both", expand=True)
-
-    # Modern saat widget'ı
-    clock = ModernClock(main_frame)
-    clock.pack(pady=20)
-
-    reminder_manager = ReminderManager()
-
-    # Hatırlatıcı bölümü için frame
-    reminder_frame = ctk.CTkFrame(main_frame, fg_color="#2B2B2B")
-    reminder_frame.pack(padx=10, pady=10, fill="x")
+    root.title("Modern Reminder")
+    root.geometry("800x900")
+    
+    # Gradient arka plan için frame
+    main_container = ctk.CTkFrame(root, fg_color="#1a1a1a")
+    main_container.pack(fill="both", expand=True)
 
     # Başlık
+    title_frame = ctk.CTkFrame(main_container, fg_color="transparent")
+    title_frame.pack(pady=20)
+    
     title_label = ctk.CTkLabel(
-        reminder_frame, 
-        text="Yeni Hatırlatıcı",
-        font=ctk.CTkFont(size=20, weight="bold")
+        title_frame,
+        text="Modern Reminder",
+        font=ctk.CTkFont(family="Helvetica", size=32, weight="bold"),
+        text_color="#4CAF50"
     )
-    title_label.pack(pady=10)
+    title_label.pack()
+
+    # Modern saat widget'ı
+    clock = ModernClock(main_container)
+    clock.pack(pady=30)
+
+    # Hatırlatıcı bölümü
+    reminder_frame = ctk.CTkFrame(
+        main_container,
+        fg_color="#2d2d2d",
+        corner_radius=15
+    )
+    reminder_frame.pack(padx=40, pady=20, fill="x")
+
+    reminder_title = ctk.CTkLabel(
+        reminder_frame,
+        text="Yeni Hatırlatıcı Ekle",
+        font=ctk.CTkFont(size=20, weight="bold"),
+        text_color="#4CAF50"
+    )
+    reminder_title.pack(pady=(20, 10))
 
     # Zaman girişi frame'i
     time_input_frame = ctk.CTkFrame(reminder_frame, fg_color="transparent")
@@ -49,14 +63,23 @@ def main():
     hours_frame = ctk.CTkFrame(time_input_frame, fg_color="transparent")
     hours_frame.pack(side="left", padx=10)
     
-    hours_label = ctk.CTkLabel(hours_frame, text="Saat:")
+    hours_label = ctk.CTkLabel(
+        hours_frame,
+        text="Saat",
+        font=ctk.CTkFont(size=14),
+        text_color="#888888"
+    )
     hours_label.pack()
     
     hours_entry = ctk.CTkEntry(
         hours_frame,
         placeholder_text="00-23",
-        width=70,
-        justify="center"
+        width=80,
+        height=40,
+        corner_radius=10,
+        border_width=2,
+        justify="center",
+        font=ctk.CTkFont(size=16)
     )
     hours_entry.pack()
 
@@ -64,7 +87,8 @@ def main():
     colon_label = ctk.CTkLabel(
         time_input_frame,
         text=":",
-        font=ctk.CTkFont(size=20, weight="bold")
+        font=ctk.CTkFont(size=24, weight="bold"),
+        text_color="#4CAF50"
     )
     colon_label.pack(side="left", pady=20)
 
@@ -72,35 +96,86 @@ def main():
     minutes_frame = ctk.CTkFrame(time_input_frame, fg_color="transparent")
     minutes_frame.pack(side="left", padx=10)
     
-    minutes_label = ctk.CTkLabel(minutes_frame, text="Dakika:")
+    minutes_label = ctk.CTkLabel(
+        minutes_frame,
+        text="Dakika",
+        font=ctk.CTkFont(size=14),
+        text_color="#888888"
+    )
     minutes_label.pack()
     
     minutes_entry = ctk.CTkEntry(
         minutes_frame,
         placeholder_text="00-59",
-        width=70,
-        justify="center"
+        width=80,
+        height=40,
+        corner_radius=10,
+        border_width=2,
+        justify="center",
+        font=ctk.CTkFont(size=16)
     )
     minutes_entry.pack()
 
     # Mesaj girişi
-    message_label = ctk.CTkLabel(reminder_frame, text="Hatırlatıcı Mesajı:")
-    message_label.pack(pady=5)
+    message_frame = ctk.CTkFrame(reminder_frame, fg_color="transparent")
+    message_frame.pack(pady=20)
+    
+    message_label = ctk.CTkLabel(
+        message_frame,
+        text="Hatırlatıcı Mesajı",
+        font=ctk.CTkFont(size=14),
+        text_color="#888888"
+    )
+    message_label.pack()
+    
     message_entry = ctk.CTkEntry(
-        reminder_frame,
+        message_frame,
         placeholder_text="Mesajınızı girin",
-        width=200
+        width=300,
+        height=40,
+        corner_radius=10,
+        border_width=2,
+        font=ctk.CTkFont(size=14)
     )
     message_entry.pack()
 
-    # Aktif hatırlatıcılar listesi için scrollable frame
-    reminders_container = ctk.CTkFrame(main_frame, fg_color="transparent")
-    reminders_container.pack(padx=10, pady=10, fill="both", expand=True)
+    # Durum mesajı için label
+    status_label = ctk.CTkLabel(
+        reminder_frame,
+        text="",
+        font=ctk.CTkFont(size=14)
+    )
+    status_label.pack(pady=5)
+
+    # Hatırlatıcı ekleme butonu
+    add_button = ctk.CTkButton(
+        reminder_frame,
+        text="Hatırlatıcı Ekle",
+        command=lambda: on_add_reminder(),
+        width=200,
+        height=40,
+        corner_radius=10,
+        font=ctk.CTkFont(size=15, weight="bold"),
+        fg_color="#4CAF50",
+        hover_color="#45a049"
+    )
+    add_button.pack(pady=20)
+
+    reminder_manager = ReminderManager()
+
+    # Aktif hatırlatıcılar bölümü
+    reminders_container = ctk.CTkFrame(
+        main_container,
+        fg_color="#2d2d2d",
+        corner_radius=15
+    )
+    reminders_container.pack(padx=40, pady=20, fill="x")
 
     reminders_label = ctk.CTkLabel(
         reminders_container,
         text="Aktif Hatırlatıcılar",
-        font=ctk.CTkFont(size=18, weight="bold")
+        font=ctk.CTkFont(size=18, weight="bold"),
+        text_color="#4CAF50"
     )
     reminders_label.pack(pady=10)
 
@@ -209,19 +284,6 @@ def main():
     
     # Başlangıçta hatırlatıcıları yükle
     load_reminders()
-
-    # Hatırlatıcı ekleme butonu
-    add_button = ctk.CTkButton(
-        reminder_frame,
-        text="Hatırlatıcı Ekle",
-        command=on_add_reminder,
-        width=200
-    )
-    add_button.pack(pady=20)
-
-    # Durum mesajı için label
-    status_label = ctk.CTkLabel(reminder_frame, text="")
-    status_label.pack(pady=5)
 
     def start_reminder_thread():
         def run_check():
