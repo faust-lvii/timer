@@ -1,5 +1,5 @@
 # main.py
-import customtkinter as ctk
+import customtkinter as ctk # type: ignore
 import threading
 from clock import ModernClock
 from reminders import ReminderManager
@@ -16,7 +16,7 @@ def main():
     ctk.set_default_color_theme("dark-blue")
 
     root = ctk.CTk()
-    root.title("Modern Reminder")
+    root.title("Reminder")
     root.geometry("700x900")
     root.minsize(400, 600)
     
@@ -30,7 +30,7 @@ def main():
     
     title_label = ctk.CTkLabel(
         title_frame,
-        text="Modern Reminder",
+        text="Reminder",
         font=ctk.CTkFont(family="Helvetica", size=32, weight="bold"),
         text_color="#ffffff"
     )
