@@ -24,8 +24,8 @@ Bu proje, kullanıcıların hatırlatıcılar ekleyip yönetebileceği bir masa�
 
 1. Bu projeyi klonlayın veya indirin:
    ```bash
-   git clone https://github.com/kullanici_adiniz/hatirlatıcı-uygulaması.git
-   cd hatirlatıcı-uygulaması
+   git clone https://github.com/faust-lvii/timer
+   cd timer
    ```
 
 2. Gerekli kütüphaneleri yükleyin:
