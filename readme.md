@@ -40,7 +40,7 @@ Bu proje, kullanıcıların hatırlatıcılar ekleyip yönetebileceği bir masa�
 
 ## Kullanım
 
-1. Uygulamayı başlattıktan sonra, "Yeni Hatırlatıc�� Ekle" bölümüne gidin.
+1. Uygulamayı başlattıktan sonra, "Yeni Hatırlatıcı Ekle" bölümüne gidin.
 2. Saat ve dakika girin (saat 0-23, dakika 0-59 aralığında olmalıdır).
 3. Hatırlatıcı mesajınızı girin.
 4. "Hatırlatıcı Ekle" butonuna tıklayın.
