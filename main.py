@@ -92,9 +92,9 @@ def main():
         time_input_frame,
         text=":",
         font=ctk.CTkFont(size=24, weight="bold"),
-        text_color="#4CAF50"
+        text_color="#ffffff"
     )
-    colon_label.pack(side="left", pady=20)
+    colon_label.pack(side="left", pady=(20, 20), padx=(5, 5))
 
     # Dakika girişi
     minutes_frame = ctk.CTkFrame(time_input_frame, fg_color="transparent")

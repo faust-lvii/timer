@@ -1,56 +1,56 @@
-# Hatırlatıcı Uygulaması
+# Reminder Application
 
-Bu proje, kullanıcıların hatırlatıcılar ekleyip yönetebileceği bir masaüstü uygulamasıdır. Kullanıcılar, belirli bir saat ve dakikada hatırlatıcılar ekleyebilir ve bu hatırlatıcılar geldiğinde bildirim alabilirler.
+The Reminder Application is a desktop software that allows users to add and manage reminders. Users can set reminders for specific times and receive notifications when those reminders are due.
 
-## Özellikler
+## Features
 
-- Kullanıcı dostu arayüz
-- Saat ve dakika girişi
-- Hatırlatıcı mesajı ekleme
-- Aktif hatırlatıcıları görüntüleme
-- Hatırlatıcıları silme
-- Uygulama kapatıldığında hatırlatıcıları kaydetme ve yükleme
-- Günlük sıfırlama ile hatırlatıcıların otomatik olarak aktif hale gelmesi
+- **User-Friendly Interface:** Intuitive and straightforward design for ease of use.
+- **Time Input:** Allows users to enter hours (0-23) and minutes (0-59).
+- **Custom Reminder Messages:** Users can add personalized messages for their reminders.
+- **Active Reminders Display:** Users can view their current active reminders.
+- **Reminder Deletion:** Easily remove unwanted reminders with a click.
+- **Data Management:** Saves and loads reminders when the application is closed.
+- **Daily Reset:** Automatically activates reminders at the start of each day.
 
-## Gereksinimler
+## Requirements
 
-- Python 3.x
-- `customtkinter` kütüphanesi
-- `clock` modülü
-- `reminders` modülü
-- `notifications` modülü
+- **Python 3.x**
+- `customtkinter` library
+- `clock` module
+- `reminders` module
+- `notifications` module
 
-## Kurulum
+## Installation
 
-1. Bu projeyi klonlayın veya indirin:
-   ```bash
+1. Clone or download the project:
+   ```bash:clock.py
    git clone https://github.com/faust-lvii/timer
    cd timer
    ```
 
-2. Gerekli kütüphaneleri yükleyin:
+2. Install the required libraries:
    ```bash
    pip install customtkinter
    ```
 
-3. Uygulamayı çalıştırın:
+3. Run the application:
    ```bash
    python main.py
    ```
 
-## Kullanım
+## Usage
 
-1. Uygulamayı başlattıktan sonra, "Yeni Hatırlatıcı Ekle" bölümüne gidin.
-2. Saat ve dakika girin (saat 0-23, dakika 0-59 aralığında olmalıdır).
-3. Hatırlatıcı mesajınızı girin.
-4. "Hatırlatıcı Ekle" butonuna tıklayın.
-5. Aktif hatırlatıcılar bölümünde eklediğiniz hatırlatıcıları görebilirsiniz.
-6. Hatırlatıcıyı silmek için ❌ butonuna tıklayın.
+1. After launching the application, navigate to the "Add New Reminder" section.
+2. Enter the time (hours 0-23, minutes 0-59).
+3. Input your reminder message.
+4. Click the "Add Reminder" button.
+5. View your added reminders in the active reminders section.
+6. To delete a reminder, click the ❌ button.
 
-## Katkıda Bulunma
+## Contributing
 
-Bu projeye katkıda bulunmak isterseniz, lütfen bir pull request oluşturun veya sorunlarınızı bildirin.
+If you would like to contribute to this project, please create a pull request or report any issues. All contributions and feedback are welcome and appreciated.
 
-## Lisans
+## License
 
-Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
+This project is licensed under the [MIT License](LICENSE).
